@@ -1,10 +1,10 @@
 import os
 import sys
 from pathlib import Path  # That is library in python doesnt need installation
-import logging           # That is library in python doesnt need installation
+import logging            # That is library in python doesnt need installation
 
 while True:
-    project_name = input("Enter your project name: ")
+    project_name = input("Enter your project name: ") # I wrote here src and there is created tise file under this name in project file structure
     if project_name != "":
         break
 

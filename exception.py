@@ -1,23 +1,26 @@
-from flask import Flask
-from src.logger import logging
-from src.exception import CustomException
-import os, sys
+from flask import Flask             # Import Flask module
+from src.logger import logging      # Import custom logging module
+from src.exception import CustomException  # Import custom exception class
+import os
+import sys                      # Import standard os and sys modules
 
-app = Flask(__name__)
-
-@app.route('/', methods = ['GET', 'POST'])
+app = Flask(__name__)               # Initialize Flask app
 
 
-def index():
-
+@app.route('/', methods=['GET', 'POST'])  # Define route for root URL
+def index():  # Define the function to handle requests to the root URL
     try:
-        raise Exception('I am trying exception function')
+        # Raise an exception
+        raise Exception('I am trying exception function but that is wrong')
     except Exception as e:
+        # Handle the exception with custom exception class
+        ML = CustomException(e, sys)
+        logging.info(ML.error_message)  # Log the error message
+        logging.info('We are testing our logging file')  # Log a test message
 
-        a_variable = CustomException(e, sys) # we gave thise name in the original function
-        logging.info('We are testing our logging file')
+        return "Welcome Veysel"  # Return a welcome message
 
-        return "Welcome Veysel"
 
-if __name__== '__main__':
-    app.run(debug=True, port=5000) # 5000
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5001)  # Run the Flask app on port 5001
